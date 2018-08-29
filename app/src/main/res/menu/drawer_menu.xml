@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+<group android:checkableBehavior="single">
+    <item android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="Home"/>
+    <item android:id="@+id/nav_food"
+        android:icon="@drawable/ic_food"
+        android:title="Food"/>
+    <item android:id="@+id/nav_fau"
+        android:icon="@drawable/ic_school"
+        android:title="FAU"/>
+    <item android:id="@+id/nav_todo"
+        android:icon="@drawable/ic_todo"
+        android:title="Activities"/>
+</group>
+    <!--do actions-->
+    <item android:title="Transportation">
+        <menu>
+            <item android:id="@+id/lyft"
+                android:icon="@drawable/ic_car"
+                android:title="Lyft"/>
+            <item android:id="@+id/trirail"
+                android:icon="@drawable/ic_tri"
+                android:title="Tri Rail"/>
+        </menu>
+    </item>
+</menu>
