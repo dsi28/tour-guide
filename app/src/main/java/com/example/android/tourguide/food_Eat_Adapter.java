@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
-public class food_Eat_Adapter extends RecyclerView.Adapter<food_Eat_Adapter.FoodEatViewHolder> {
+public class food_Eat_Adapter extends RecyclerView.Adapter<food_Eat_Adapter.FoodEatViewHolder>{
     Context mContext;
     ArrayList<Eat> eatList;
 
@@ -31,12 +33,12 @@ public class food_Eat_Adapter extends RecyclerView.Adapter<food_Eat_Adapter.Food
     public void onBindViewHolder(FoodEatViewHolder holder, int position) {
         holder.mEatName.setText(eatList.get(position).getName());
         holder.mEatRating.setText(eatList.get(position).getRating());
-        if(eatList.get(position).getFav()){
-            holder.mEatNotFav.setVisibility(View.INVISIBLE);
-            holder.mEatFav.setVisibility(View.VISIBLE);
+        if(holder.mEatNotFav.getVisibility()==View.VISIBLE){
+            eatList.get(position).setFav(false);
+            Toast.makeText(mContext,"false",Toast.LENGTH_SHORT);
         } else {
-            holder.mEatNotFav.setVisibility(View.VISIBLE);
-            holder.mEatFav.setVisibility(View.INVISIBLE);
+            eatList.get(position).setFav(false);
+            Toast.makeText(mContext,"true",Toast.LENGTH_SHORT);
         }
     }
 
@@ -44,6 +46,7 @@ public class food_Eat_Adapter extends RecyclerView.Adapter<food_Eat_Adapter.Food
     public int getItemCount() {
         return eatList.size();
     }
+
 
     public static class FoodEatViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView mEatName;
@@ -57,9 +60,19 @@ public class food_Eat_Adapter extends RecyclerView.Adapter<food_Eat_Adapter.Food
             mEatRating=(TextView) itemView.findViewById(R.id.food_eat_rating_tv);
             mEatFav= (ImageView) itemView.findViewById(R.id.food_eat_fav_iv);
             mEatNotFav= (ImageView) itemView.findViewById(R.id.food_eat_notFav_iv);
-        }
-        public void onClick(View view){
 
+            mEatNotFav.setOnClickListener(this);
+            mEatFav.setOnClickListener(this);
+        }
+        @Override
+        public void onClick(View view){
+            if(view.getId()==mEatNotFav.getId()){
+                mEatNotFav.setVisibility(View.INVISIBLE);
+                mEatFav.setVisibility(View.VISIBLE);
+            } else if(view.getId()==mEatFav.getId() ){
+                mEatFav.setVisibility(View.INVISIBLE);
+                mEatNotFav.setVisibility(View.VISIBLE);
+            }
         }
     }
 }

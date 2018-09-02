@@ -33,4 +33,11 @@ public class Eat {
     public String[] getSpecial() {
         return special;
     }
+
+
+
+    //setters
+    public void setFav(boolean newVal){
+        fav=newVal;
+    }
 }

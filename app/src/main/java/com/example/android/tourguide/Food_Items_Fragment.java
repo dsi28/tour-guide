@@ -4,15 +4,16 @@ package com.example.android.tourguide;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
-
 import java.util.ArrayList;
-import java.util.Arrays;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +23,7 @@ public class Food_Items_Fragment extends Fragment {
     private int position;
     private ArrayList<Eat> eatList;
     private ArrayList<Eat> displayEatList;
+
 
     public static Food_Items_Fragment newInstance(int pos){
         Food_Items_Fragment fragment = new Food_Items_Fragment();
@@ -38,6 +40,7 @@ public class Food_Items_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_food_fav,container,false);
+        ButterKnife.bind(this, view);
         if(getArguments() !=null){
             position = getArguments().getInt(ARG_POS);
             setEatList();
@@ -45,7 +48,10 @@ public class Food_Items_Fragment extends Fragment {
         }
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.food_fav_rv);
         food_Eat_Adapter recyclerAdapter =  new food_Eat_Adapter(getContext(), displayEatList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        LinearLayoutManager myLayoutManager =new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(myLayoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), myLayoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setAdapter(recyclerAdapter);
         return view;
     }
