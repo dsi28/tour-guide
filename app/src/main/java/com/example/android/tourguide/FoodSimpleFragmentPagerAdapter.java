@@ -23,10 +23,7 @@ public class FoodSimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 //        } else  {
 //            return new Food_Items_Fragment();
 //        }
-        Food_Items_Fragment goFood = new Food_Items_Fragment();
-        Bundle args = new Bundle();
-        args.putInt("argsPos", position);
-        goFood.setArguments(args);
+        Food_Items_Fragment goFood= Food_Items_Fragment.newInstance(position);
         return goFood;
     }
     @Override
