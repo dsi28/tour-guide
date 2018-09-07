@@ -1,6 +1,7 @@
 package com.example.android.tourguide;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -20,10 +23,8 @@ import butterknife.ButterKnife;
  */
 public class Food_Items_Fragment extends Fragment {
     private static final String ARG_POS = "argPos";
-    private int position;
+    private int pagePosition;
     private ArrayList<Eat> eatList;
-    private ArrayList<Eat> displayEatList;
-
 
     public static Food_Items_Fragment newInstance(int pos){
         Food_Items_Fragment fragment = new Food_Items_Fragment();
@@ -42,26 +43,44 @@ public class Food_Items_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_food_fav,container,false);
         ButterKnife.bind(this, view);
         if(getArguments() !=null){
-            position = getArguments().getInt(ARG_POS);
-            setEatList();
-            displayEatItems();
+            pagePosition = getArguments().getInt(ARG_POS);
+            //setEatList();
         }
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.food_fav_rv);
-        food_Eat_Adapter recyclerAdapter =  new food_Eat_Adapter(getContext(), displayEatList);
-        LinearLayoutManager myLayoutManager =new LinearLayoutManager(getActivity());
+        final food_Eat_Adapter recyclerAdapter =  new food_Eat_Adapter(getContext(), eatList, pagePosition);
+        recyclerAdapter.notifyDataSetChanged();
+        final LinearLayoutManager myLayoutManager =new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(myLayoutManager);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), myLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setAdapter(recyclerAdapter);
+        recyclerAdapter.setOnItemClickListener(new food_Eat_Adapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                eatList.get(position).setName("yo, Adrian");
+                eatList.get(position).setFav(true);
+                recyclerAdapter.notifyItemChanged(position);
+                recyclerAdapter.notifyItemChanged(position);
+                Toast.makeText(getContext(),eatList.get(position).getName(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onStarClick(int position) {
+                eatList.get(position).setFav(true);
+                recyclerAdapter.notifyItemChanged(position);
+                Toast.makeText(getContext(),eatList.get(position).getName()+"\n"+ eatList.get(position).getFav(),Toast.LENGTH_LONG).show();
+
+            }
+        });
         return view;
     }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //displayEatItems();
+        setEatList();
     }
 
     private void setEatList(){
+
         eatList= new ArrayList<>();
         eatList.add(new Eat(0, "Res 1", 10, false));
         eatList.add(new Eat(1, "Bar 1", 10, false));
@@ -75,15 +94,5 @@ public class Food_Items_Fragment extends Fragment {
         eatList.add(new Eat(1, "Bar 5", 10, false));
         eatList.add(new Eat(0, "Res 6", 10, false));
         eatList.add(new Eat(1, "Bar 6", 10, true));
-    }
-    private void displayEatItems(){
-        displayEatList=new ArrayList<>();
-        for (Eat e: eatList) {
-            if(position==2 && e.getFav()){
-                displayEatList.add(e);
-            }else if(position != 2 && e.getType()== position){
-                displayEatList.add(e);
-            }
-        }
     }
 }

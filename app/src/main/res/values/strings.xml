@@ -2,9 +2,9 @@
     <string name="app_name">Tour Guide</string>
     <string name="navigation_open">Open Navigation</string>
     <string name="navigation_close">Close Navigation</string>
-    <string name="tab_italian">Italian</string>
-    <string name="tab_latin">Latin</string>
-    <string name="tab_fav">Stars</string>
+    <string name="tab_eat">Eat</string>
+    <string name="tab_bar">Bars</string>
+    <string name="tab_fav">Favs</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

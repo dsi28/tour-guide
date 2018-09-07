@@ -11,18 +11,17 @@
         android:contentDescription="Barcelona"
         android:scaleType="fitXY"
         android:src="@drawable/barca_home_page"/>
+
     <TextView
-        android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:paddingTop="10dp"
+
+        android:gravity="center_horizontal"
         android:paddingBottom="10dp"
-        android:textStyle="bold"
-        android:textColor="@color/backUp"
-        android:background="@color/mainColor"
+        android:paddingTop="10dp"
         android:text="NEWS"
-        />
+        android:textSize="25sp"
+        android:textStyle="bold" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/home_list_fragment_rv"
         android:layout_width="match_parent"

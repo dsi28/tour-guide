@@ -5,9 +5,19 @@
     android:layout_height="match_parent"
     android:background="@color/colorAccent">
     <TextView
+        android:id="@+id/activity_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Activites fragment"
-        android:layout_centerInParent="true"
-        android:textSize="30sp"/>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+
+        android:layout_marginTop="22dp"
+        android:textSize="30sp"
+        android:text="Activites In Barna"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/activity_rv"
+        android:layout_below="@id/activity_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </RelativeLayout>

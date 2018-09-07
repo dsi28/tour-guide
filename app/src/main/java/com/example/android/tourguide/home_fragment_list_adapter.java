@@ -44,7 +44,6 @@ public class home_fragment_list_adapter extends RecyclerView.Adapter<home_fragme
         holder.mStationTV.setText(newsList.get(position).getNewStation());
         //holder.mIconIV.setImageResource(newsList.get(position).getPic());
         holder.mDateTv.setText(newsList.get(position).getDisplayDate());
-
         holder.parentCS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

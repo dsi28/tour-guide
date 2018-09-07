@@ -29,9 +29,9 @@ public class FoodSimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         if (position == 0) {
-            return contx.getString(R.string.tab_italian);
+            return contx.getString(R.string.tab_eat);
         } else if (position == 1) {
-            return contx.getString(R.string.tab_latin);
+            return contx.getString(R.string.tab_bar);
         } else {
             return contx.getString(R.string.tab_fav);
         }

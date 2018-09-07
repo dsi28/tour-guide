@@ -9,13 +9,14 @@ public class Eat {
     private int rating;
     private boolean fav; // No:false, Yes:true
     private String[] special;
-
+    private static int id =0;
 
     public Eat(int type, String name, int rating, boolean fav) {
         this.type = type;
         this.name = name;
         this.rating = rating;
         this.fav = fav;
+        this.id++;
         //this.special = special;
     }
     public int getType() {
@@ -39,5 +40,8 @@ public class Eat {
     //setters
     public void setFav(boolean newVal){
         fav=newVal;
+    }
+    public void setName(String s){
+        name= s;
     }
 }

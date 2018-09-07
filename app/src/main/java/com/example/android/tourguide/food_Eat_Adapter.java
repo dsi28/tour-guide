@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,31 +15,51 @@ import java.util.ArrayList;
 
 public class food_Eat_Adapter extends RecyclerView.Adapter<food_Eat_Adapter.FoodEatViewHolder>{
     Context mContext;
-    ArrayList<Eat> eatList;
+    public static ArrayList<Eat> eatList;
+    private OnItemClickListener mListener;
+    private int pagePos;
 
-    public food_Eat_Adapter(Context mContext, ArrayList<Eat> eatList) {
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+        void onStarClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener= listener;
+    }
+
+    public food_Eat_Adapter(Context mContext, ArrayList<Eat> eatList, int pagePos) {
         this.mContext = mContext;
         this.eatList = eatList;
+        this.pagePos=pagePos;
     }
 
     @NonNull
     @Override
     public FoodEatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.food_fragment_eat_item,parent,false);
-        FoodEatViewHolder vHolder = new FoodEatViewHolder(view);
+        FoodEatViewHolder vHolder = new FoodEatViewHolder(view, mListener);
         return vHolder;
     }
 
     @Override
-    public void onBindViewHolder(FoodEatViewHolder holder, int position) {
-        holder.mEatName.setText(eatList.get(position).getName());
-        holder.mEatRating.setText(eatList.get(position).getRating());
-        if(holder.mEatNotFav.getVisibility()==View.VISIBLE){
-            eatList.get(position).setFav(false);
-            Toast.makeText(mContext,"false",Toast.LENGTH_SHORT);
-        } else {
-            eatList.get(position).setFav(false);
-            Toast.makeText(mContext,"true",Toast.LENGTH_SHORT);
+    public void onBindViewHolder(final FoodEatViewHolder holder, int position) {
+            if(eatList.get(position).getFav()){
+                holder.mEatNotFav.setVisibility(View.GONE);
+                holder.mEatFav.setVisibility(View.VISIBLE);
+            } else {
+                holder.mEatNotFav.setVisibility(View.VISIBLE);
+                holder.mEatFav.setVisibility(View.GONE);
+            }
+        if(pagePos!=2 && pagePos==eatList.get(position).getType()){
+            holder.mEatName.setText(eatList.get(position).getName());
+            holder.mEatRating.setText(eatList.get(position).getRating());
+        }else if(pagePos==2 && eatList.get(position).getFav()){
+            holder.mEatName.setText(eatList.get(position).getName());
+            holder.mEatRating.setText(eatList.get(position).getRating());
+        }else {
+            holder.itemView.setVisibility(View.GONE);
+            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0,0));
         }
     }
 
@@ -48,31 +69,49 @@ public class food_Eat_Adapter extends RecyclerView.Adapter<food_Eat_Adapter.Food
     }
 
 
-    public static class FoodEatViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+    public static class FoodEatViewHolder extends RecyclerView.ViewHolder{
+        public Context context;
         private TextView mEatName;
         private TextView mEatRating;
         private ImageView mEatFav;
         private ImageView mEatNotFav;
 
-        public FoodEatViewHolder(View itemView){
+        public FoodEatViewHolder(View itemView, final OnItemClickListener listener){
             super(itemView);
+            this.context= context;
             mEatName =(TextView) itemView.findViewById(R.id.food_eat_name_tv);
             mEatRating=(TextView) itemView.findViewById(R.id.food_eat_rating_tv);
             mEatFav= (ImageView) itemView.findViewById(R.id.food_eat_fav_iv);
             mEatNotFav= (ImageView) itemView.findViewById(R.id.food_eat_notFav_iv);
 
-            mEatNotFav.setOnClickListener(this);
-            mEatFav.setOnClickListener(this);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null){
+                        int pos = getAdapterPosition();
+                        if(pos!= RecyclerView.NO_POSITION){
+                            listener.onItemClick(pos);
+                        }
+                    }
+                }
+            });
+
+            mEatNotFav.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null){
+                        int pos = getAdapterPosition();
+                        if(pos!= RecyclerView.NO_POSITION){
+                            mEatFav.setVisibility(View.VISIBLE);
+                            mEatNotFav.setVisibility(View.INVISIBLE);
+                            listener.onStarClick(pos);
+                        }
+                    }
+                }
+            });
         }
-        @Override
-        public void onClick(View view){
-            if(view.getId()==mEatNotFav.getId()){
-                mEatNotFav.setVisibility(View.INVISIBLE);
-                mEatFav.setVisibility(View.VISIBLE);
-            } else if(view.getId()==mEatFav.getId() ){
-                mEatFav.setVisibility(View.INVISIBLE);
-                mEatNotFav.setVisibility(View.VISIBLE);
-            }
-        }
+
+
     }
 }
