@@ -30,7 +30,19 @@ public class ActivitiesFragment extends Fragment {
         activity_fragment_adapter recyclerAdpater = new activity_fragment_adapter(getContext(), acts);
         //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
+        boolean includeEdge = true;
         recyclerView.setAdapter(recyclerAdpater);
+        recyclerAdpater.setOnItemClickListener(new activity_fragment_adapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Activ_Info_Fragment nextFrag= new Activ_Info_Fragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.activ_rv, nextFrag,"findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.activity_rv, new Activ_Info_Fragment()).commit();
+            }
+        });
         return view;
     }
 

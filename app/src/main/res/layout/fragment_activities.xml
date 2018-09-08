@@ -3,17 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent">
+    android:background="@color/colorAccent"
+    android:id="@+id/activ_rv">
     <TextView
         android:id="@+id/activity_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:textStyle="bold"
 
         android:layout_marginTop="22dp"
         android:textSize="30sp"
-        android:text="Activites In Barna"/>
+        android:text="Things To Do..."/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/activity_rv"

@@ -1,20 +1,25 @@
 package com.example.android.tourguide;
 
 public class Activ {
-    static private int ActivID=0;
+    static private int ActivIDCount=0;
+    private int id;
     private String name;
     private String desc;
     private String address;
 
     public Activ(String name, String desc, String address) {
-        ActivID++;
+        ActivIDCount++;
+        id=ActivIDCount;
         this.name = name;
         this.desc = desc;
         this.address = address;
     }
 
+    public String getActivIDString() {
+        return String.valueOf(id);
+    }
     public int getActivID() {
-        return ActivID;
+        return id;
     }
     public String getName() {
         return name;
