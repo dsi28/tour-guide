@@ -35,7 +35,7 @@ public class ActivitiesFragment extends Fragment {
         recyclerAdpater.setOnItemClickListener(new activity_fragment_adapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Activ_Info_Fragment nextFrag= new Activ_Info_Fragment();
+                Activ_Info_Fragment nextFrag= Activ_Info_Fragment.newInstance(acts.get(position));
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.activ_rv, nextFrag,"findThisFragment")
                         .addToBackStack(null)
