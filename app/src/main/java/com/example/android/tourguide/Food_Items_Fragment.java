@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,8 +44,9 @@ public class Food_Items_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_food_fav,container,false);
         ButterKnife.bind(this, view);
         if(getArguments() !=null){
+
             pagePosition = getArguments().getInt(ARG_POS);
-            //setEatList();
+            Log.e("GETTING ADAPTER POS", "GETTING ADAPTER POS" +  pagePosition);
         }
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.food_fav_rv);
         final food_Eat_Adapter recyclerAdapter =  new food_Eat_Adapter(getContext(), eatList, pagePosition);
@@ -68,7 +70,6 @@ public class Food_Items_Fragment extends Fragment {
                 eatList.get(position).setFav(true);
                 recyclerAdapter.notifyItemChanged(position);
                 Toast.makeText(getContext(),eatList.get(position).getName()+"\n"+ eatList.get(position).getFav(),Toast.LENGTH_LONG).show();
-
             }
         });
         return view;
@@ -80,7 +81,6 @@ public class Food_Items_Fragment extends Fragment {
     }
 
     private void setEatList(){
-
         eatList= new ArrayList<>();
         eatList.add(new Eat(0, "Res 1", 10, false));
         eatList.add(new Eat(1, "Bar 1", 10, false));

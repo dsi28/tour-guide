@@ -3,6 +3,7 @@ package com.example.android.tourguide;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,10 +52,16 @@ public class food_Eat_Adapter extends RecyclerView.Adapter<food_Eat_Adapter.Food
                 holder.mEatNotFav.setVisibility(View.VISIBLE);
                 holder.mEatFav.setVisibility(View.GONE);
             }
-        if(pagePos!=2 && pagePos==eatList.get(position).getType()){
+        if(pagePos==0  && pagePos==eatList.get(position).getType()){
             holder.mEatName.setText(eatList.get(position).getName());
             holder.mEatRating.setText(eatList.get(position).getRating());
+            Log.e("GETTING ADAPTER POS", " eat: " +  pagePos);
+        } else if(pagePos==1 && pagePos==eatList.get(position).getType()){
+            holder.mEatName.setText(eatList.get(position).getName());
+            holder.mEatRating.setText(eatList.get(position).getRating());
+            Log.e("GETTING ADAPTER POS", "bars: " +  pagePos);
         }else if(pagePos==2 && eatList.get(position).getFav()){
+            Log.e("GETTING ADAPTER POS", "Favs: " +  pagePos);
             holder.mEatName.setText(eatList.get(position).getName());
             holder.mEatRating.setText(eatList.get(position).getRating());
         }else {
@@ -111,7 +118,5 @@ public class food_Eat_Adapter extends RecyclerView.Adapter<food_Eat_Adapter.Food
                 }
             });
         }
-
-
     }
 }

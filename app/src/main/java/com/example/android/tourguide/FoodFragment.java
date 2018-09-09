@@ -18,16 +18,11 @@ public class FoodFragment extends Fragment {
         View restult= inflater.inflate(R.layout.fragment_food, container, false);
         TabLayout tabLayout = (TabLayout) restult.findViewById(R.id.sliding_tabs);
         ViewPager pager = (ViewPager)restult.findViewById(R.id.viewpager);
-
-        //FoodSimpleFragmentPagerAdapter adapter = new FoodSimpleFragmentPagerAdapter(getSupportFragmentManager(), this);
         pager.setAdapter(buildAdapter());
         // Find the tab layout that shows the tabs
         tabLayout.setupWithViewPager(pager);
-
-
         return restult;
     }
-
 
     private PagerAdapter buildAdapter(){
         return (new FoodSimpleFragmentPagerAdapter(getChildFragmentManager(), getActivity()));
