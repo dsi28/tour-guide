@@ -18,7 +18,6 @@ public class ActivitiesFragment extends Fragment {
     ArrayList<Activ> acts;
     Context mContext;
     public ActivitiesFragment() {
-
     }
 
     @Nullable
@@ -40,12 +39,10 @@ public class ActivitiesFragment extends Fragment {
                         .replace(R.id.activ_rv, nextFrag,"findThisFragment")
                         .addToBackStack(null)
                         .commit();
-                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.activity_rv, new Activ_Info_Fragment()).commit();
             }
         });
         return view;
     }
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

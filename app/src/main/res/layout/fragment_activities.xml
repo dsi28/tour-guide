@@ -14,8 +14,8 @@
         android:textStyle="bold"
 
         android:layout_marginTop="22dp"
-        android:textSize="30sp"
-        android:text="Things To Do..."/>
+        android:textSize="@dimen/thirty_text"
+        android:text="@string/activities_title"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/activity_rv"

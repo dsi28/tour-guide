@@ -6,4 +6,6 @@
     <color name="backUp">#607d8b</color>
     <color name="white">#FFFFFF</color>
     <color name="mainColor">#303f9f</color>
+    <color name="home_item_text">#c5cae9</color>
+    <color name="black">#000</color>
 </resources>

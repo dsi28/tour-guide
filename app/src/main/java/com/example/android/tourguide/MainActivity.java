@@ -53,10 +53,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_todo:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ActivitiesFragment()).commit();
                 break;
-            case R.id.lyft:
+            case R.id.transportation1:
                 Toast.makeText(this, "lyft", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.trirail:
+            case R.id.transportation2:
                 Toast.makeText(this, "tri", Toast.LENGTH_SHORT).show();
                 break;
         }

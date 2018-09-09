@@ -5,26 +5,26 @@
 <group android:checkableBehavior="single">
     <item android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"
-        android:title="Home"/>
+        android:title="@string/home"/>
     <item android:id="@+id/nav_food"
         android:icon="@drawable/ic_food"
-        android:title="Food"/>
+        android:title="@string/food"/>
     <item android:id="@+id/nav_fau"
         android:icon="@drawable/ic_school"
         android:title="FAU"/>
     <item android:id="@+id/nav_todo"
         android:icon="@drawable/ic_todo"
-        android:title="Activities"/>
+        android:title="@string/activities"/>
 </group>
     <!--do actions-->
-    <item android:title="Transportation">
+    <item android:title="@string/transportation">
         <menu>
-            <item android:id="@+id/lyft"
+            <item android:id="@+id/transportation1"
                 android:icon="@drawable/ic_car"
-                android:title="Lyft"/>
-            <item android:id="@+id/trirail"
+                android:title="@string/transportation1"/>
+            <item android:id="@+id/transportation2"
                 android:icon="@drawable/ic_tri"
-                android:title="Tri Rail"/>
+                android:title="@string/transportation2"/>
         </menu>
     </item>
 </menu>

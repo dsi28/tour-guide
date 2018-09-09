@@ -43,9 +43,4 @@ public class Activ_Info_Fragment extends Fragment{
         }
         return view;
     }
-
-
-    private void linkViews(){
-
-    }
 }
